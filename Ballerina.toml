@@ -1,0 +1,13 @@
+[package]
+org = "choreo"
+name = "ballerina_connection_failure"
+version = "0.1.0"
+distribution = "2201.8.0"
+
+[build-options]
+observabilityIncluded = true
+
+[[platform.java17.dependency]]
+groupId = "com.microsoft.sqlserver"
+artifactId = "mssql-jdbc"
+version = "9.4.0.jre11"
