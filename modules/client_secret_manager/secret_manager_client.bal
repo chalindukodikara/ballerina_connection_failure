@@ -18,9 +18,36 @@ public isolated function storeConfigsInKV(string clusterId, SecretItem[] secrets
         SystemSecret: false,
         Secrets: secrets
     };
-    http:Response|error resp = secretManagerEndpoint->/api/v1/secrets/set.post(secretGroup.toJson());
+    http:Response|error resp = secretManagerEndpoint->/api/v1/secrets/get.post(secretGroup.toJson());
     if resp is error {
         return resp;
     }
     return (check resp.getTextPayload()).toString();
+}
+
+# `retrieveConfigValuesFromKV` function will return values for the provided references.
+#
+# + context - The context of the request.
+# + clusterId - The cluster id of the environment.
+# + secrets - The secrets to be retrieved.
+# + return - Outputs the config values for the environment ids.
+public isolated function retrieveConfigValuesFromKV()
+                                                                                    returns string|error {
+    SecretItem[] secrets = [];
+    secrets.push({
+        "Name": "01ee7ebe-c770-1ab8-ade5-584ac5adffb9"
+    });
+    secrets.push({
+        "Name": "01ee7ebe-c770-1ab8-b16a-4188708e8251"
+    });
+    SecretGroup secretGroup = {
+        ClusterId: "7eca5163-6a37-ee11-b8f0-000d3adac5f0",
+        SystemSecret: false,
+        Secrets: secrets
+    };
+    http:Response|error resp = secretManagerEndpoint->/api/v1/secrets/get.post(secretGroup.toJson());
+    if resp is error {
+        return resp;
+    }
+    return resp.getTextPayload();
 }

@@ -7,7 +7,7 @@
 
 // URLs
 // public configurable string secretManagerUrl = string `http://${host}:5006`;
-public configurable string secretManagerUrl = string `http://10.100.8.163:5006`;
+public configurable string secretManagerUrl = string `http://${host}:5006`;
 public configurable string cloudManagerUrl = string `http://${host}:5009`;
 public configurable string goTestUrl = string `http://${host}:3000`;
 public string host = "localhost";

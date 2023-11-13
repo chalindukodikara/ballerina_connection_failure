@@ -8,7 +8,7 @@ import ballerina_connection_failure.config;
 
 import ballerina/http;
 
-final http:Client cloudManagerEndpoint = check new (config:cloudManagerUrl, httpVersion = http:HTTP_1_1, http1Settings = {keepAlive: http:KEEPALIVE_NEVER});
+final http:Client cloudManagerEndpoint = check new (config:cloudManagerUrl);
 const CLOUD_MANAGER = "CLOUD_MANAGER";
 
 # `getClusterID` function will return cluster ID of a given environment template uuid.
